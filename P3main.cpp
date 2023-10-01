@@ -1,6 +1,8 @@
 #include<iostream>
 #include<string>
+#include<chrono>
 using namespace std;
+using namespace std::chrono;
 
 //Find Max String Length
 int findMaxSize(string *a, int s){
@@ -33,6 +35,9 @@ void removeZeros(string *a, int s, int size){
         for (int j = 0; j < a[i].length(); j++){
             if (a[i][j] == '0'){
                 count++;
+            }
+            else{
+                break;
             }
         }
         a[i] = a[i].substr(count, a[i].length());
@@ -74,10 +79,15 @@ void radixSort(string *a, int s, int size){
 }
 
 int main(){
-    string arr[6] = {"86", "32", "143", "1", "12", "21"};
+    string arr[10] = {"32", "120", "3", "12", "5423", "1342", "762", "89", "12", "1"};
     int arrSize = sizeof(arr)/sizeof(arr[0]);
 
+    auto s1 = high_resolution_clock::now(); //START CLOCK
     radixSort(arr, findMaxSize(arr, arrSize), arrSize);
+    auto e1 = high_resolution_clock::now(); //END CLOCK
+    auto d1 = duration_cast<microseconds>(e1 - s1); //FIND CLOCK DIFF.
+
+    cout << d1.count() << "us" << endl; //PRINT CLOCK DIFF.
 
     return 0;
 }
