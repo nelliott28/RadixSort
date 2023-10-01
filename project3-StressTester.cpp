@@ -21,7 +21,6 @@ int main()
 		string tempN = to_string(newN);
 		arr[n] = tempN;
 
-		cout << arr[n] << endl;
 	}
 	delete[] arr;
 	return 0;
